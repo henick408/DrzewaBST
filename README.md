@@ -1,7 +1,1 @@
-"# DrzewaBST" 
-"# Sklep" 
-"# Sklep" 
-"# Sklep" 
-"# Sklep" 
-"# Sklep" 
-"# Sklep" 
+# Sklep
