@@ -5,29 +5,26 @@ class Node:
         self.left = None
         self.parent = None
 
-    def __str__(self):
-        return str(self.value)
-
-
-def getLeft(node1):
-    return node1.left
-
-
-def getRight(node):
-    return node.right
-
-
-def _maxValue(node):
-    value = node.value
-    while node.right is not None:
-        value = node.right.value
-        node = node.right
-    return value
-
 
 class BST:
-    def __init__(self, root):
-        self.root = Node(root)
+    def __init__(self):
+        self.root = None
+
+    @staticmethod
+    def getRight(node):
+        return node.right
+
+    @staticmethod
+    def getLeft(node):
+        return node.left
+
+    @staticmethod
+    def _maxValue(node):
+        value = node.value
+        while node.right is not None:
+            value = node.right.value
+            node = node.right
+        return value
 
     def insert(self, value):
         if self.root is None:
@@ -124,7 +121,7 @@ class BST:
                 return node.right
             #Jeśli ma dwójke dzieci to szukamy inorder successor
             #Inorder successor to węzeł minimalny gdy zaczniemy poszukiwania od node.right
-            node.value = _maxValue(node.left)
+            node.value = self._maxValue(node.left)
             #A teraz usuwamy ten węzeł z którego wzięliśmy wartość
             node.left = self._delete_recursive(node.left, node.value)
         return node
@@ -133,3 +130,52 @@ class BST:
         for node in self.postorder():
             self.delete(node)
 
+    def noTree(self):
+        if self.root is None:
+            return True
+
+
+class Menu:
+
+    def __init__(self):
+        self.tree = BST()
+
+    def presetTree(self):
+        nodes = [5, 3, 4, 1, 8, 7]
+        for node in nodes:
+            self.tree.insert(node)
+
+    def displayMenu(self):
+        print("A - wstaw element do drzewa BST")
+        print("B - usuń element z drzewa BST")
+        print("C - wyczyść drzewo")
+        print("D - wydrukuj drzewo przejściem preorder")
+        print("E - wydrukuj drzewo przejściem inorder")
+        print("F - wydrukuj drzewo przejściem postorder")
+        if self.tree.noTree():
+            print("G - stwórz drzewo przykładoawe")
+        print("X - zakończenie pracy programu")
+        choice = str(input())
+        if choice == "A" or choice == "a":
+            value = int(input("Podaj wartość węzła do dodania:\n"))
+            self.tree.insert(value)
+            print(f"Wstawiono element {value} do drzewa")
+        elif choice == "B" or choice == "b":
+            value = int(input("podaj wartość węzła do usunięcia:\n"))
+            self.tree.delete(value)
+            print(f"Usunięto element {value} z drzewa")
+        elif choice == "C" or choice == "c":
+            self.tree.clearTree()
+        elif choice == "D" or choice == "d":
+            print("Przejście po drzewie w kolejności preorder", self.tree.preorder())
+        elif choice == "E" or choice == "e":
+            print("Przejście po drzewie w kolejności inorder", self.tree.inorder())
+        elif choice == "F" or choice == "f":
+            print("Przejście po drzewie w kolejności postorder", self.tree.postorder())
+        elif choice == "X" or choice == "x":
+            #nie mam zielonego pojęcia jak zrobić tak żeby usunąc obiekt menu żeby while(menu) było menu jako false
+            #wykombinuj to jakoś
+            return
+        if self.tree.noTree():
+            if choice == "G" or choice == "g":
+                self.presetTree()
