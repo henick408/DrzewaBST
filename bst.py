@@ -146,7 +146,7 @@ class Menu:
         for node in nodes:
             self.tree.insert(node)
 
-    def displayMenu(self):
+    def mainRoot(self):
         print("A - wstaw element do drzewa BST")
         print("B - usuń element z drzewa BST")
         print("C - wyczyść drzewo")
@@ -154,8 +154,8 @@ class Menu:
         print("E - wydrukuj drzewo przejściem inorder")
         print("F - wydrukuj drzewo przejściem postorder")
         if self.tree.noTree():
-            print("G - stwórz drzewo przykładoawe")
-        print("X - reset drzewa")
+            print("G - stwórz drzewo przykładowe")
+        print("X - zakończ działanie programu")
         choice = str(input())
         if choice == "A" or choice == "a":
             value = int(input("Podaj wartość węzła do dodania:\n"))
