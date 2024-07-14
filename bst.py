@@ -129,6 +129,7 @@ class BST:
     def clearTree(self):
         for node in self.postorder():
             self.delete(node)
+        self.root = None
 
     def noTree(self):
         if self.root is None:
@@ -154,7 +155,7 @@ class Menu:
         print("F - wydrukuj drzewo przejściem postorder")
         if self.tree.noTree():
             print("G - stwórz drzewo przykładoawe")
-        print("X - zakończenie pracy programu")
+        print("X - reset drzewa")
         choice = str(input())
         if choice == "A" or choice == "a":
             value = int(input("Podaj wartość węzła do dodania:\n"))
@@ -173,8 +174,7 @@ class Menu:
         elif choice == "F" or choice == "f":
             print("Przejście po drzewie w kolejności postorder", self.tree.postorder())
         elif choice == "X" or choice == "x":
-            #nie mam zielonego pojęcia jak zrobić tak żeby usunąc obiekt menu żeby while(menu) było menu jako false
-            #wykombinuj to jakoś
+            #jakoś zrób wyłączanie programu idk, zrób żeby while(menu) sie wyjebało
             return
         if self.tree.noTree():
             if choice == "G" or choice == "g":
