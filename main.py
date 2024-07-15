@@ -1,5 +1,5 @@
 from bst import *
 
 menu = Menu()
-while menu:
-    menu.mainRoot()
+while menu.dziaua:
+    menu.mainLoop()

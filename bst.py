@@ -146,7 +146,9 @@ class Menu:
         for node in nodes:
             self.tree.insert(node)
 
-    def mainRoot(self):
+    dziaua = True
+
+    def mainLoop(self):
         print("A - wstaw element do drzewa BST")
         print("B - usuń element z drzewa BST")
         print("C - wyczyść drzewo")
@@ -174,8 +176,7 @@ class Menu:
         elif choice == "F" or choice == "f":
             print("Przejście po drzewie w kolejności postorder", self.tree.postorder())
         elif choice == "X" or choice == "x":
-            #jakoś zrób wyłączanie programu idk, zrób żeby while(menu) sie wyjebało
-            return
+            self.dziaua = False
         if self.tree.noTree():
             if choice == "G" or choice == "g":
                 self.presetTree()
